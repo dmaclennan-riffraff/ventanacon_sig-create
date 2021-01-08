@@ -1,0 +1,7 @@
+﻿SignatureTemplateValue,ADValue
+FirstName,GivenName
+LastName,Surname
+JobTitle,Description
+DirectLine,MobilePhone
+OfficeNumber,OfficePhone
+SMTPAddress,EmailAddress
