@@ -27,10 +27,10 @@ Write-Host "Preparing backend dependencies" -ForegroundColor Yellow
 $userid = Get-ADUser -Identity $env:USERNAME -Properties *
 
 #Template File Details
-$templateFilePathENV = "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\template_v3.htm"
-$templateFileName = 'template_v3.htm'
+$templateFilePathENV = "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\Ventana-New.htm"
+$templateFileName = 'Ventana-New.htm'
 $tempSaveLocation = "$env:USERPROFILE"
-$sigPhotos = "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\template_v3_files"
+$sigPhotos = "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\Ventana-New_files"
 
 #Outlook Signature Location
 $sigFilePath = "$env:USERPROFILE\AppData\Roaming\Microsoft\Signatures\Ventana-New.htm"
@@ -96,11 +96,23 @@ New-Item -path $sigFilePath -ItemType file | out-null
 Write-Host "Empty signature Created!"  -ForegroundColor Green
 
 #----------------# Signature Media Content / Photos Content #----------------# 
+
+
+Invoke-WebRequest $SigArray.PhotoUrl[1] -OutFile "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\Ventana-New_files\image001.jpg"
+Invoke-WebRequest $SigArray.PhotoUrl[1] -OutFile "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\Ventana-New_files\image002.jpg"
+Invoke-WebRequest $SigArray.PhotoUrl[2] -OutFile "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\Ventana-New_files\image003.jpg"
+Invoke-WebRequest $SigArray.PhotoUrl[2] -OutFile "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\Ventana-New_files\image004.jpg"
+Invoke-WebRequest $SigArray.PhotoUrl[3] -OutFile "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\Ventana-New_files\image005.png"
+Invoke-WebRequest $SigArray.PhotoUrl[4] -OutFile "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\Ventana-New_files\image006.png"
+Invoke-WebRequest $SigArray.PhotoUrl[5] -OutFile "$env:USERPROFILE\Downloads\VentanaSignatureCreation\SigFile\Ventana-New_files\image007.png"
+
+
+
 $i = Test-Path $sigPath\Ventana-New_files
 if ( $i -eq $true){
     Write-Host "Old signature media exists. Refreshing content"  -ForegroundColor Yellow
     Remove-Item  -Recurse -Force -Confirm:$false $sigPath\Ventana-New_files
-    write-host "Copying signature media to destination directory"   -ForegroundColor Yellow
+    Write-Host "Copying signature media to destination directory"   -ForegroundColor Yellow
     New-Item -path $sigPath\Ventana-New_files -ItemType Directory | out-null
     Copy-Item -Force -path $sigPhotos\* -Destination $sigPath\Ventana-New_files\
 }else{
@@ -151,15 +163,6 @@ if ($? -eq $true){
 }
 
 (get-content -path $sigFilePath) -replace $SigArray.SignatureTemplateValue[5], $userid.EmailAddress.ToLower() | Set-Content -Path $sigFilePath 
-if ($? -eq $true){
-}else{
-    write-host "Something went wrong.. Exiting"  -ForegroundColor Red
-    exit
-}
-Write-Host "Universalizing signature content!!"  -ForegroundColor Cyan
-
-(get-content -path $sigFilePath) -replace 'template_v3_files', 'Ventana-New_files' | Set-Content -Path $sigFilePath 
-write-host "Signature successfully configured!"  -ForegroundColor Green
 if ($? -eq $true){
 }else{
     write-host "Something went wrong.. Exiting"  -ForegroundColor Red

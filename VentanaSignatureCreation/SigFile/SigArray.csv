@@ -1,7 +1,7 @@
-﻿SignatureTemplateValue,ADValue
-FirstName,GivenName
-LastName,Surname
-JobTitle,Description
-DirectLine,MobilePhone
-OfficeNumber,OfficePhone
-SMTPAddress,EmailAddress
+SignatureTemplateValue,ADValue,PhotoUrl
+FirstName,GivenName,null
+LastName,Surname,https://ventanaconstruction.com/wp-content/uploads/2020/11/canada-sme-top-employer-2020.jpg
+JobTitle,Description,https://ventanaconstruction.com/wp-content/uploads/2021/01/ventana_banner.jpg
+DirectLine,MobilePhone,https://ventanaconstruction.com/wp-content/uploads/2021/01/facebook-red-18x18-1.png
+OfficeNumber,OfficePhone,https://ventanaconstruction.com/wp-content/uploads/2021/01/linked-red-18x18-1.png
+SMTPAddress,EmailAddress,https://ventanaconstruction.com/wp-content/uploads/2021/01/instagram-red-18x18-1.png
