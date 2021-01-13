@@ -24,12 +24,6 @@ $sigName = "Ventana-Reply"
  
 Write-Host "Backend dependencies completed"  -ForegroundColor Green
 
-#----------------# Outlook Dependencies #----------------# 
-
-Write-Host "Preparing Outlook and system dependencies"  -ForegroundColor Yellow
-$UserAccount = Get-ItemProperty -Path HKCU:\Software\Microsoft\Office\Outlook\Settings -Name Accounts | Select -ExpandProperty Accounts
-$UserAccountId = (ConvertFrom-Json $UserAccount).UserUpn[0]
-
 #----------------# Find Outlook Profiles in registry #----------------# 
 # Find Outlook Profiles in registry
 $CommonSettings = $False
